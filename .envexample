@@ -1,5 +1,4 @@
 PORT=8080
 
 // Mongo Atlas
-USER=usuario de cluster
-PASSWORD=Password de cluster de usuario
+MONGODB_ATLAS=url de concexion de mongoDB Atlas/el nombre de tu base
