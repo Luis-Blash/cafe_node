@@ -1,4 +1,5 @@
 const { response } = require('express')
+const bcryptjs = require('bcryptjs');
 // importacion del modelo
 const Usuario = require('../models/usuarios');
 
@@ -15,12 +16,19 @@ const usuariosPut = (req, res = response) => {
 }
 
 const usuariosPost = async (req, res = response) => {
-    const body = req.body;
+    const {nombre, correo, password, rol} = req.body;
     // creamos instancia
-    const usuario = new Usuario(body);
+    const usuario = new Usuario({nombre, correo, password, rol});
+
+    // Verificar si el correo existe
+
+    // Encriptar
+    const salt = bcryptjs.genSaltSync();
+    usuario.password = bcryptjs.hashSync(password, salt);
+
     // Guardar
     await usuario.save();
-    
+
     res.status(200).json({
         msg: 'Usuarios POST',
         usuario
