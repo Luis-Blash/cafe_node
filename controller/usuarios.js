@@ -4,9 +4,27 @@ const bcryptjs = require('bcryptjs');
 const Usuario = require('../models/usuarios');
 
 
-const usuariosGet = (req, res = response) => {
+const usuariosGet = async (req, res = response) => {
+    // request query
+    const { limite = 5, desde = 0 } = req.query;
+    // Mi query para peticion
+    const query = { estado: true}
+    // Promesa
+    // Esto ayuda a poder hacer las peticiones al mismo tiempo
+    // A diferencia a tener las dos en diferentes constantes haria lento el codigo
+    // Hacemos una destructuracion de la respuesta
+    const [total, usuarios] = await Promise.all([
+        // El total
+        Usuario.countDocuments(query),
+        // Haces la petición para el paginacion y la cantidad de usuarios
+        Usuario.find(query)
+        .skip(Number(desde))
+        .limit(Number(limite))
+    ]);
+
     res.status(200).json({
-        msg: 'Usuarios GET'
+        total,
+        usuarios
     })
 }
 
@@ -19,14 +37,11 @@ const usuariosPut = async (req, res = response) => {
         const salt = bcryptjs.genSaltSync();
         resto.password = bcryptjs.hashSync(password, salt);
     }
-    
+
     // verifacar contra base de datos y actualizar
     const usuario = await Usuario.findByIdAndUpdate(id, resto);
 
-    res.status(200).json({
-        msg: 'Usuarios PUT',
-        usuario
-    })
+    res.status(200).json(usuario)
 }
 
 const usuariosPost = async (req, res = response) => {
@@ -41,10 +56,7 @@ const usuariosPost = async (req, res = response) => {
     // Guardar
     await usuario.save();
 
-    res.status(200).json({
-        msg: 'Usuarios POST',
-        usuario
-    })
+    res.status(200).json(usuario)
 }
 
 const usuariosDelete = (req, res = response) => {
