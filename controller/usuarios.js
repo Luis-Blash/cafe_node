@@ -59,10 +59,17 @@ const usuariosPost = async (req, res = response) => {
     res.status(200).json(usuario)
 }
 
-const usuariosDelete = (req, res = response) => {
-    res.status(200).json({
-        msg: 'Usuarios DELETE'
-    })
+const usuariosDelete = async (req, res = response) => {
+    const { id } = req.params;
+
+    //Fisicamente lo borramos
+    // Pero si algo modifico no sabria
+    // const usuario = await Usuario.findByIdAndDelete(id);
+    
+    // De esta forma simpletente se quedara
+    const usuario = await Usuario.findByIdAndUpdate(id, {estado: false});
+
+    res.status(200).json(usuario)
 }
 
 module.exports = {

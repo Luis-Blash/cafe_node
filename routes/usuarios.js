@@ -12,12 +12,15 @@ const routes = Router();
 
 // GET usuario
 routes.get('/', usuariosGet);
+
+
 routes.put('/:id',[
     check('id', 'No es un id valido').isMongoId(),
     check('id').custom(usuarioExistePorId),
     check('rol').custom(esRoleValido),
     valiadarCampos
 ], usuariosPut);
+
 // la segunda linea son los middlewares
 routes.post('/',[
     check('nombre', "El nombre es obligatorio").not().isEmpty(),
@@ -28,6 +31,12 @@ routes.post('/',[
     check('rol').custom(esRoleValido),
     valiadarCampos
 ] ,usuariosPost);
-routes.delete('/', usuariosDelete);
+
+
+routes.delete('/:id',[
+    check('id', 'No es un id valido').isMongoId(),
+    check('id').custom(usuarioExistePorId),
+    valiadarCampos
+], usuariosDelete);
 
 module.exports = routes;
