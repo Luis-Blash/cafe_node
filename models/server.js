@@ -8,6 +8,8 @@ class Server{
         this.port = process.env.PORT;
         // Rutas direción
         this.rutaUsuarios = '/api/usuario';
+        this.rutaAuth = '/api/auth';
+
         // Conectar a base de datos
         this.conectarDB();
         // Middlewares
@@ -30,7 +32,7 @@ class Server{
     }
 
     routes(){
-        // usuarios
+        this.app.use(this.rutaAuth, require('../routes/auth'));
         this.app.use(this.rutaUsuarios, require('../routes/usuarios'));
     }
 
