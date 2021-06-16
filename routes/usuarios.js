@@ -6,7 +6,7 @@ const { usuariosGet, usuariosPut, usuariosPost, usuariosDelete } = require('../c
 // Middlewares
 const { valiadarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
-const { esAdminRole } = require('../middlewares/validar-roles');
+const { esAdminRole, tieneRole } = require('../middlewares/validar-roles');
 // Helpers 
 const { esRoleValido, emailExiste, usuarioExistePorId } = require('../helpers/db-validators');
 // ---
@@ -38,6 +38,7 @@ routes.post('/',[
 routes.delete('/:id',[
     validarJWT,
     esAdminRole,
+    tieneRole('VENTAS_ROLE','OTRO_ROLE'),
     check('id', 'No es un id valido').isMongoId(),
     check('id').custom(usuarioExistePorId),
     valiadarCampos
