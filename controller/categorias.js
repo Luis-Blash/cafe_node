@@ -54,29 +54,22 @@ const crearCategoria = async (req, res = response) => {
 }
 
 const actualizarCategoria = async (req, res = response)=>{
-    const nombre = req.params.id.toUpperCase()
-    const categoria = await Categoria.findOne({nombre})
-    if(!categoria){
-        return res.status(400).json({
-            msg: `La categoria ${nombre}, no existe`
-        })
-    }
+    const {id} = req.params;
+    const { estado, usuario, ...data} = req.body;
 
-    const {...datos} = req.body
-    console.log(categoria.id);
-    const updateCategoria = await Categoria.findByIdAndUpdate(categoria.id, n)
-    console.log(updateCategoria);
-    res.status(200).json({
-        msg: "Datos"
-    })
+    data.nombre = data.nombre.toUpperCase();
+    data.usuario = req.usuario._id;
 
+    const categoria = await Categoria.findByIdAndUpdate(id, data, {new: true});
 
+    res.json(categoria);
 }
 
 const borrarCategoria = async (req, res=response) =>{
     const {id} = req.params
+    console.log(req);
 
-    const categoria = await Categoria.findByIdAndUpdate(id, {estado: false})
+    const categoria = await Categoria.findByIdAndUpdate(id, {estado: false}, {new: false})
 
     res.status(200).json(categoria)
 }
@@ -85,5 +78,6 @@ module.exports = {
     crearCategoria,
     obtenerCategorias,
     obtenerCategoria,
-    actualizarCategoria
+    actualizarCategoria,
+    borrarCategoria
 }
