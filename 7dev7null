@@ -1,21 +1,22 @@
 Not disabling GPU
 Main~createDefaultWorkingDir - Default working dir creation already attempted
-1625450155086 main info "Booting Postman 7.36.5, linux-5.4.0-77-generic on x64"
-1625450155088 main info "EventBus~initialize - Success"
-1625450155092 main warn "CloudProxyManager~init: Error while reading proxy configuration from user data - ",{"errno":-2,"code":"ENOENT","syscall":"open","path":"/home/luis-blash/snap/postman/133/.config/Postman/Postman_Config/proxy","name":"Error","message":"ENOENT: no such file or directory, open '/home/luis-blash/snap/postman/133/.config/Postman/Postman_Config/proxy'","stack":"Error: ENOENT: no such file or directory, open '/home/luis-blash/snap/postman/133/.config/Postman/1625450155092 main warn "CloudProxyManager~init: Error while reading proxy configur1625450155108 main info "UpdateHandler~init - Success"
-1625450156434 main info "RuntimeIPCAgent~started: Success"
-1625450156928 main info "LinuxAutoUpdater~Cleanup - Initial cleanup successful"
-1625450157153 main info "Bootstrap-models~bootstrap - Success"
-1625450158426 main info "window-manager~newSharedWindow: Shell loaded"
-1625450163446 main info "Main~AppEvents - Received booted event for process shared"
+1625875698046 main info "Booting Postman 7.36.5, linux-5.4.0-77-generic on x64"
+1625875698076 main info "EventBus~initialize - Success"
+1625875698225 main warn "CloudProxyManager~init: Error while reading proxy configuration from user data - ",{"errno":-2,"code":"ENOENT","syscall":"open","path":"/home/luis-blash/snap/postman/133/.config/Postman/Postman_Config/proxy","name":"Error","message":"ENOENT: no such file or directory, open '/home/luis-blash/snap/postman/133/.config/Postman/Postman_Config/proxy'","stack":"Error: ENOENT: no such file or directory, open '/home/luis-blash/snap/postman/133/.config/Postman/1625875698225 main warn 1625875698255 main info "CloudProxyManager~init - Success"
+1625875698364 main info "UpdateHandler~init - Success"
+1625875701974 main info "RuntimeIPCAgent~started: Success"
+1625875703058 main info "LinuxAutoUpdater~Cleanup - Initial cleanup successful"
+1625875703551 main info "Bootstrap-models~bootstrap - Success"
+1625875707323 main info "window-manager~newSharedWindow: Shell loaded"
+1625875719372 main info "Main~AppEvents - Received booted event for process shared"
 INTERCEPTOR CONNECTIVITY: Connecting to Interceptor Bridge
 InterceptorBridge: Trying to connect Native App IPC~Interceptor Bridge
-1625450166568 main info "Main~AppEvents - Received booted event for process requester"
+1625875723602 main info "Main~AppEvents - Received booted event for process requester"
 IPCClient ~ WindowHandler: New event is received { type: 'window-opened' }
 trap-models~bootstrap - Success"
-1625450158426 main info "window-manager~newSharedWindow: Shell loaded"
-1625450163446 main info "Main~AppEvents - Received booted event for process shared"
+1625875707323 main info "window-manager~newSharedWindow: Shell loaded"
+1625875719372 main info "Main~AppEvents - Received booted event for process shared"
 INTERCEPTOR CONNECTIVITY: Connecting to Interceptor Bridge
 InterceptorBridge: Trying to connect Native App IPC~Interceptor Bridge
-1625450166568 main info "Main~AppEvents - Received booted event for process requester"
+1625875723602 main info "Main~AppEvents - Received booted event for process requester"
 IPCClient ~ WindowHandler: New event is received { type: 'window-opened' }
