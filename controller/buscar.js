@@ -30,6 +30,46 @@ const buscarUsuario = async(termino= '', res = response)=>{
     })
 }
 
+const buscarCategorias = async(termino= '', res = response)=>{
+    const esMongoID = ObjectId.isValid(termino); // TRUE
+    if(esMongoID){
+        const categoria = await Categoria.findById(termino);
+        return res.json({
+            results: (categoria)?[categoria] : []
+        })
+    }
+
+    const expresRegular = new RegExp(termino, 'i')
+    const categorias = await Categoria.find({
+        nombre: expresRegular,
+        estado: true
+    });
+    return res.json({
+        results: categorias
+    })
+}
+
+const buscarProductos = async(termino= '', res = response)=>{
+    const esMongoID = ObjectId.isValid(termino); // TRUE
+    if(esMongoID){
+        const producto = await Producto.findById(termino)
+                            .populate('categoria', 'nombre');
+        return res.json({
+            results: (producto)?[producto] : []
+        })
+    }
+
+    const expresRegular = new RegExp(termino, 'i')
+    const productos = await Producto.find({
+        nombre: expresRegular,
+        estado: true
+    }).populate('categoria', 'nombre');
+    
+    return res.json({
+        results: productos
+    })
+}
+
 const buscar = (req, res = response) => {
 
     const { coleccion, termino } = req.params;
@@ -43,13 +83,13 @@ const buscar = (req, res = response) => {
     switch (coleccion) {
 
         case 'usuarios':
-            buscarUsuario(termino, res)
+            buscarUsuario(termino, res);
             break;
         case 'categoria':
-
+            buscarCategorias(termino, res);
             break;
         case 'producto':
-
+            buscarProductos(termino, res);
             break;
         default:
             res.status(500).json({
@@ -57,11 +97,7 @@ const buscar = (req, res = response) => {
             })
             break;
     }
-
-    // res.json({
-    //     coleccion,
-    //     termino
-    // })
+    
 }
 
 module.exports = {
