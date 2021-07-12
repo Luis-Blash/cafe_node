@@ -1,6 +1,6 @@
 PORT=8080
 
-MONGODB_ATLAS= url de mongo atlas
+MONGODB_ATLAS= mongodb+srv://usuario de mongo atlas
 
 SECRETORPRIVATEKEY=tu key
 

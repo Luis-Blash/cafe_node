@@ -10,12 +10,17 @@ const cargarArchivo = async (req, res = response) => {
         return;
     }
 
-    // imagenes
-    const nombre = await subirArchivo(req.files);
-
-    res.json({
-        nombre
-    })
+    try{
+        // subida
+        const nombre = await subirArchivo(req.files, undefined, 'images');
+    
+        res.json({
+            nombre
+        })
+        
+    }catch(msg){
+        res.status(400).json({msg})
+    }
 }
 
 module.exports = {
