@@ -1,8 +1,9 @@
-const express = require('express')
-const cors = require('cors')
+const express = require('express');
+const cors = require('cors');
+const fileUpload = require('express-fileupload');
 
-const { dbConecction } = require('../database/config')
-class Server{
+const { dbConecction } = require('../database/config');
+class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
@@ -24,20 +25,25 @@ class Server{
         this.routes();
     }
 
-    async conectarDB(){
+    async conectarDB() {
         await dbConecction()
     }
 
-    middlewares(){
+    middlewares() {
         // CORS
         this.app.use(cors());
         // parseo json
         this.app.use(express.json());
         // ruta de archivos
         this.app.use(express.static('public'));
+        // carga de archivos
+        this.app.use(fileUpload({
+            useTempFiles: true,
+            tempFileDir: '/tmp/'
+        }));
     }
 
-    routes(){
+    routes() {
         this.app.use(this.path.auth, require('../routes/auth'));
         this.app.use(this.path.buscar, require('../routes/buscar'));
         this.app.use(this.path.categorias, require('../routes/categorias'));
@@ -46,7 +52,7 @@ class Server{
         this.app.use(this.path.uploads, require('../routes/upload'));
     }
 
-    listen(){
+    listen() {
         this.app.listen(this.port, () => console.log(`port listening ${this.port}`))
     }
 }

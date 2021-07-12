@@ -20,3 +20,4 @@ INTERCEPTOR CONNECTIVITY: Connecting to Interceptor Bridge
 InterceptorBridge: Trying to connect Native App IPC~Interceptor Bridge
 1626040545782 main info "Main~AppEvents - Received booted event for process requester"
 IPCClient ~ WindowHandler: New event is received { type: 'window-opened' }
+Gtk-Message: GtkDialog mapped without a transient parent. This is discouraged.
