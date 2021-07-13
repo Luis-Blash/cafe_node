@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 // Controller
-const { cargarArchivo, actualizarImagen } = require('../controller/upload');
+const { cargarArchivo, actualizarImagen, mostrarImagen } = require('../controller/upload');
 // helpers
 const { coleccionesPerimitidas } = require('../helpers')
 // middlewares
@@ -17,5 +17,12 @@ routes.put('/:coleccion/:id', [
     check('coleccion').custom(c => coleccionesPerimitidas(c, ['usuarios', 'productos'])),
     valiadarCampos
 ], actualizarImagen)
+
+routes.get('/:coleccion/:id', [
+    check('id', 'No es id de mongo').isMongoId(),
+    check('coleccion').custom(c => coleccionesPerimitidas(c, ['usuarios', 'productos'])),
+    valiadarCampos
+], mostrarImagen)
+
 
 module.exports = routes;
