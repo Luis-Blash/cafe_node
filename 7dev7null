@@ -21,3 +21,5 @@ InterceptorBridge: Trying to connect Native App IPC~Interceptor Bridge
 1626139097697 main info "Main~AppEvents - Received booted event for process requester"
 IPCClient ~ WindowHandler: New event is received { type: 'window-opened' }
 Gtk-Message: GtkDialog mapped without a transient parent. This is discouraged.
+Gtk-Message: GtkDialog mapped without a transient parent. This is discouraged.
+Gtk-Message: GtkDialog mapped without a transient parent. This is discouraged.
